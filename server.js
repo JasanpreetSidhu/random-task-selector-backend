@@ -1,4 +1,5 @@
-const express = require('express');
+//const express = require('express');
+import express from 'express';
 const app = express();
 const PORT = 3000;
 
@@ -38,7 +39,7 @@ function getRandomTask() {
 		return 'No tasks in the list';
 	} else {
 		// Math.random() * num => ( 0 to 0.99999... ) * num = 0 to (num-1).99999...
-		randIndex = parseInt(Math.random() * tasks.length);
+		const randIndex = parseInt(Math.random() * tasks.length);
 		return tasks[randIndex];
 	}
 }
