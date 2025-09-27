@@ -1,7 +1,10 @@
 //const express = require('express');
 import express from 'express';
+import cors from 'cors';
 const app = express();
 const PORT = 3000;
+
+app.use(cors());
 
 /* configures the server and defines callback function that will run in CLI as the server starts from CLI, which will wait for incoming requests on a specific port, when this file is run using CLI command [node file_name(with_location if not in current working directory)]   */
 app.listen(PORT, function (err) {
@@ -17,6 +20,10 @@ app.listen(PORT, function (err) {
 /* configuring GET request route on the root URL(endpoint). This route will be triggered when GET request is sent either through browser, curl, postman or other sources */
 app.get('/', (req, res) => {
 	res.status(200);
+	res.setHeader(
+		'Access-Control-Allow-Origin',
+		'http://127.0.0.1:5500/what-should-i-do/index.html'
+	);
 	const randTask = getRandomTask();
 	res.send(randTask);
 });
