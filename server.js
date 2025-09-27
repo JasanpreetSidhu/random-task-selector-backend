@@ -20,10 +20,6 @@ app.listen(PORT, function (err) {
 /* configuring GET request route on the root URL(endpoint). This route will be triggered when GET request is sent either through browser, curl, postman or other sources */
 app.get('/', (req, res) => {
 	res.status(200);
-	res.setHeader(
-		'Access-Control-Allow-Origin',
-		'http://127.0.0.1:5500/what-should-i-do/index.html'
-	);
 	const randTask = getRandomTask();
 	res.send(randTask);
 });
