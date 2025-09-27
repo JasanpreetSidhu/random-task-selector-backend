@@ -20,6 +20,7 @@ app.listen(PORT, function (err) {
 /* configuring GET request route on the root URL(endpoint). This route will be triggered when GET request is sent either through browser, curl, postman or other sources */
 app.get('/', (req, res) => {
 	res.status(200);
+	res.set('Content-Type', 'text/html');
 	const randTask = getRandomTask();
 	res.send(randTask);
 });
