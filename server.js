@@ -53,6 +53,6 @@ function getRandomTask() {
 	} else {
 		// Math.random() * num => ( 0 to 0.99999... ) * num = 0 to (num-1).99999...
 		const randIndex = parseInt(Math.random() * tasks.length);
-		return tasks[tasks.length - 1];
+		return tasks[randIndex];
 	}
 }
