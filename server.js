@@ -4,7 +4,23 @@ import cors from 'cors';
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+// Define allowed origins
+// For production, consider loading these from environment variables
+const allowedOrigins = ['http://localhost:3000', 'https://yourdomain.com']; // Replace with your actual allowed origins
+
+// Configure CORS with specific origins
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl requests, or same-origin requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 /* configures the server and defines callback function that will run in CLI as the server starts from CLI, which will wait for incoming requests on a specific port, when this file is run using CLI command [node file_name(with_location if not in current working directory)]   */
 app.listen(PORT, function (err) {
